@@ -1,17 +1,11 @@
 import { Avatar, Card, Skeleton } from "antd";
+import { IUser } from "../../Redux/usersDataSlice";
 import React from "react";
 // @ts-ignore
 import s from "./UserCard.module.css";
 
-interface IUserProps {
-  id: number;
-  avatar_url: string;
-  html_url: string;
-  login: string;
-}
-
 interface ICardProps {
-  user: IUserProps;
+  user: IUser;
   loading: boolean;
 }
 

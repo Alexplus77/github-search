@@ -4,11 +4,11 @@ import {useAppDispatch, useAppSelector} from "./hooks/reduxHooks";
 import {fetchUsers} from "./Redux/middlewares/fetchUsers";
 import {UserCard} from "./components/UserCard";
 import useDebounce from "./hooks/useDebounce";
-import { Input} from "antd";
+import {Input} from "antd";
 
 function App() {
     const {users: usersList, isLoading} = useAppSelector((state) => state.usersData)
-    const [change, setChange] = useState('');
+    const [change, setChange] = useState(' ');
     const [data, loading] = useDebounce(change)
     const dispatch = useAppDispatch();
 
@@ -22,10 +22,10 @@ function App() {
 
     return (
         <div className="App">
-            <Input style={{width:'200px'}} onChange={onChange} placeholder={'Search a github users'}/>
+            <Input style={{width: '200px'}} onChange={onChange} placeholder={'Search a github users'}/>
             <section className={'usersListContainer'}>
                 {
-                 change.length>0 &&   usersList.map((user) => <UserCard user={user} loading={loading}/>)
+                    usersList.map((user) => <UserCard user={user} loading={loading}/>)
                 }
             </section>
         </div>

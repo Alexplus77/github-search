@@ -1,0 +1,6 @@
+.userCard{
+    display: grid;
+    grid-auto-flow: row;
+    justify-items: center;
+    gap: 20px;
+}

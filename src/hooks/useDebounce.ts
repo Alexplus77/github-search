@@ -11,6 +11,7 @@ const [loading, setLoading]=useState(false)
        }, 3000)
         return ()=> clearInterval(id)
     },[value])
-    return [data, loading]
+
+    return  [data, loading]
 }
 export default useDebounce

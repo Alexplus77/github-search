@@ -16,7 +16,7 @@ interface ICardProps{
 }
 
 export const UserCard = ({user, loading}:ICardProps) => {
-    console.log(user)
+
   return  <Card key={user.id}>
         <div className={s.userCard}>
             {

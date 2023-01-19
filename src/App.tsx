@@ -25,11 +25,9 @@ function App() {
             <Input style={{width:'200px'}} onChange={onChange} placeholder={'Search a github users'}/>
             <section className={'usersListContainer'}>
                 {
-                    usersList.map((user) => <UserCard user={user} loading={loading}/>)
+                 change.length>0 &&   usersList.map((user) => <UserCard user={user} loading={loading}/>)
                 }
             </section>
-
-
         </div>
     );
 }

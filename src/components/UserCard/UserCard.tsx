@@ -27,7 +27,7 @@ export const UserCard = ({user, loading}:ICardProps) => {
                     :<>
                         <Avatar style={{width: '200px', height: '200px'}} key={user.id} shape={'circle'}
                                 src={user.avatar_url}/>
-                    <a href={user.html_url}>{user.login}</a>
+                    <a href={user.html_url} target={'_blank'}>{user.login} </a>
                     </>
 
             }

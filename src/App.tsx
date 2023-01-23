@@ -5,6 +5,7 @@ import { fetchUsers } from "./Redux/middlewares/fetchUsers";
 import { UserCard } from "./components/UserCard";
 import useDebounce from "./hooks/useDebounce";
 import { Input } from "antd";
+import { IUser } from "./Redux/usersDataSlice";
 
 function App() {
   const { users: usersList, isLoading } = useAppSelector(
@@ -18,7 +19,7 @@ function App() {
     dispatch(fetchUsers(data));
   }, [data]);
 
-  const onChange = (values: any) => {
+  const onChange = (values: React.ChangeEvent<HTMLInputElement>) => {
     setChange(values.target.value);
   };
 
@@ -30,8 +31,8 @@ function App() {
         placeholder={"Search a github users"}
       />
       <section className={"usersListContainer"}>
-        {usersList.map((user) => (
-          <UserCard key={user.id} user={user} loading={loading} />
+        {usersList.map((user: IUser) => (
+          <UserCard key={user.id} user={user} loading={isLoading} />
         ))}
       </section>
     </div>

@@ -1,8 +1,8 @@
 import { Avatar, Card, Skeleton } from "antd";
 import { IUser } from "../../Redux/usersDataSlice";
 import React from "react";
-// @ts-ignore
-import s from "./UserCard.module.css";
+
+import style from "./UserCard.module.css";
 
 interface ICardProps {
   user: IUser;
@@ -12,7 +12,7 @@ interface ICardProps {
 export const UserCard = ({ user, loading }: ICardProps) => {
   return (
     <Card key={user.id}>
-      <div className={s.userCard}>
+      <div className={style.userCard}>
         {loading ? (
           <>
             <Skeleton.Avatar

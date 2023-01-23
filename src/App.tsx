@@ -32,7 +32,7 @@ function App() {
       />
       <section className={"usersListContainer"}>
         {usersList.map((user: IUser) => (
-          <UserCard key={user.id} user={user} loading={isLoading} />
+          <UserCard key={user.id} users={user} isLoading={isLoading} />
         ))}
       </section>
     </div>

@@ -8,12 +8,12 @@ export interface IUser {
   html_url: string;
 }
 
-export interface IState {
-  users: IUser[];
+export interface IState<T> {
+  users: T;
   isLoading: boolean;
 }
 
-const initialState: IState = {
+const initialState: IState<IUser[]> = {
   users: [],
   isLoading: false,
 };
@@ -34,4 +34,4 @@ export const usersDataSlice = createSlice({
   },
 });
 
-export default usersDataSlice.reducer
+export default usersDataSlice.reducer;

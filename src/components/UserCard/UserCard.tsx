@@ -1,26 +1,21 @@
 import { Avatar, Card, Skeleton } from "antd";
-import { IUser } from "../../Redux/usersDataSlice";
+import { IUser, IState } from "../../Redux/usersDataSlice";
 import React from "react";
 
 import style from "./UserCard.module.css";
 
-interface ICardProps {
-  user: IUser;
-  loading: boolean;
-}
-
-export const UserCard = ({ user, loading }: ICardProps) => {
+export const UserCard = ({ users, isLoading }: IState<IUser>) => {
   return (
-    <Card key={user.id}>
+    <Card key={users.id}>
       <div className={style.userCard}>
-        {loading ? (
+        {isLoading ? (
           <>
             <Skeleton.Avatar
-              active={loading}
+              active={isLoading}
               style={{ width: "200px", height: "200px" }}
             />
             <Skeleton.Node
-              active={loading}
+              active={isLoading}
               style={{ width: "200px", height: "50px" }}
             />
           </>
@@ -28,12 +23,12 @@ export const UserCard = ({ user, loading }: ICardProps) => {
           <>
             <Avatar
               style={{ width: "200px", height: "200px" }}
-              key={user.id}
+              key={users.id}
               shape={"circle"}
-              src={user.avatar_url}
+              src={users.avatar_url}
             />
-            <a href={user.html_url} target={"_blank"}>
-              {user.login}{" "}
+            <a href={users.html_url} target={"_blank"}>
+              {users.login}{" "}
             </a>
           </>
         )}

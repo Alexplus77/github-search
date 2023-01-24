@@ -1,28 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { useAppDispatch, useAppSelector } from "./hooks/reduxHooks";
 import { fetchUsers } from "./Redux/middlewares/fetchUsers";
 import { UserCard } from "./components/UserCard";
 import useDebounce from "./hooks/useDebounce";
+import {changeValue} from "./Redux/usersDataSlice";
 import { Input } from "antd";
-import { IUser } from "./Redux/usersDataSlice";
-import { changeValue } from "./Redux/usersDataSlice";
 
 function App() {
-  const { users: usersList, dataValue } = useAppSelector(
+  const { users: usersList, dataValue} = useAppSelector(
     (state) => state.usersData
   );
 
   const [data] = useDebounce(dataValue);
-
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchUsers(data));
   }, [data]);
 
-  const onChange = (values: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(changeValue(values.target.value));
+  const onChange = (values: any) => {
+      dispatch(changeValue(values.target.value))
   };
 
   return (
@@ -33,8 +31,8 @@ function App() {
         placeholder={"Search a github users"}
       />
       <section className={"usersListContainer"}>
-        {usersList.map((user: IUser) => (
-          <UserCard key={user.id} user={user} />
+        {usersList.map((user) => (
+          <UserCard key={user.id} user={user}  />
         ))}
       </section>
     </div>

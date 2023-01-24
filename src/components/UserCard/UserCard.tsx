@@ -1,10 +1,15 @@
 import { Avatar, Card, Skeleton } from "antd";
-import { IUser, IState } from "../../Redux/usersDataSlice";
+import { IUser } from "../../Redux/usersDataSlice";
 import React from "react";
 
 import style from "./UserCard.module.css";
+import { useAppSelector } from "../../hooks/reduxHooks";
 
-export const UserCard = ({ users, isLoading }: IState<IUser>) => {
+interface IUsers {
+  users: IUser;
+}
+export const UserCard = ({ users }: IUsers) => {
+  const { isLoading } = useAppSelector((state) => state.usersData);
   return (
     <Card key={users.id}>
       <div className={style.userCard}>

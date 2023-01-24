@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchUsers } from "./middlewares/fetchUsers";
 
 export interface IUser {
@@ -10,17 +10,24 @@ export interface IUser {
 
 export interface IState<T> {
   users: T;
-  isLoading: boolean;
+  isLoading?: boolean;
+  dataValue: string;
 }
 
 const initialState: IState<IUser[]> = {
   users: [],
   isLoading: false,
+  dataValue: "",
 };
 export const usersDataSlice = createSlice({
   name: "usersDataSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    changeValue: (state, action: PayloadAction<string>) => {
+      state.isLoading = true;
+      state.dataValue = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchUsers.pending, (state) => {
@@ -28,10 +35,10 @@ export const usersDataSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchUsers.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.users = action.payload;
+        state.isLoading = false;
       });
   },
 });
-
+export const { changeValue } = usersDataSlice.actions;
 export default usersDataSlice.reducer;

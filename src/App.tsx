@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { useAppDispatch, useAppSelector } from "./hooks/reduxHooks";
 import { fetchUsers } from "./Redux/middlewares/fetchUsers";
@@ -6,13 +6,15 @@ import { UserCard } from "./components/UserCard";
 import useDebounce from "./hooks/useDebounce";
 import { Input } from "antd";
 import { IUser } from "./Redux/usersDataSlice";
+import { changeValue } from "./Redux/usersDataSlice";
 
 function App() {
-  const { users: usersList, isLoading } = useAppSelector(
+  const { users: usersList, dataValue } = useAppSelector(
     (state) => state.usersData
   );
-  const [change, setChange] = useState(" ");
-  const [data, loading] = useDebounce(change);
+
+  const [data] = useDebounce(dataValue);
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -20,7 +22,7 @@ function App() {
   }, [data]);
 
   const onChange = (values: React.ChangeEvent<HTMLInputElement>) => {
-    setChange(values.target.value);
+    dispatch(changeValue(values.target.value));
   };
 
   return (
@@ -32,7 +34,7 @@ function App() {
       />
       <section className={"usersListContainer"}>
         {usersList.map((user: IUser) => (
-          <UserCard key={user.id} users={user} isLoading={isLoading} />
+          <UserCard key={user.id} users={user} />
         ))}
       </section>
     </div>

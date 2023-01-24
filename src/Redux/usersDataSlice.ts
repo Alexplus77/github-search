@@ -10,7 +10,7 @@ export interface IUser {
 
 export interface IState<T> {
   users: T;
-  isLoading?: boolean;
+  isLoading: boolean;
   dataValue: string;
 }
 

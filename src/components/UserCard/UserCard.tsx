@@ -6,13 +6,13 @@ import style from "./UserCard.module.css";
 import { useAppSelector } from "../../hooks/reduxHooks";
 
 interface ICardProps {
-  users: IUser;
+  user: IUser;
 }
 
-export const UserCard = ({ users }: ICardProps) => {
+export const UserCard = ({ user }: ICardProps) => {
   const { isLoading } = useAppSelector((state) => state.usersData);
   return (
-    <Card key={users.id}>
+    <Card key={user.id}>
       <div className={style.userCard}>
         {isLoading ? (
           <>
@@ -29,12 +29,12 @@ export const UserCard = ({ users }: ICardProps) => {
           <>
             <Avatar
               style={{ width: "200px", height: "200px" }}
-              key={users.id}
+              key={user.id}
               shape={"circle"}
-              src={users.avatar_url}
+              src={user.avatar_url}
             />
-            <a href={users.html_url} target={"_blank"}>
-              {users.login}{" "}
+            <a href={user.html_url} target={"_blank"}>
+              {user.login}{" "}
             </a>
           </>
         )}

@@ -34,7 +34,7 @@ function App() {
       />
       <section className={"usersListContainer"}>
         {usersList.map((user: IUser) => (
-          <UserCard key={user.id} users={user} />
+          <UserCard key={user.id} user={user} />
         ))}
       </section>
     </div>

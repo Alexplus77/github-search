@@ -5,10 +5,11 @@ import React from "react";
 import style from "./UserCard.module.css";
 import { useAppSelector } from "../../hooks/reduxHooks";
 
-interface IUsers {
+interface ICardProps {
   users: IUser;
 }
-export const UserCard = ({ users }: IUsers) => {
+
+export const UserCard = ({ users }: ICardProps) => {
   const { isLoading } = useAppSelector((state) => state.usersData);
   return (
     <Card key={users.id}>
